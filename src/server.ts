@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import 'dotenv/config';
 import { ApolloServer } from 'apollo-server';
-import { userTypeDefs, usersResolvers, UsersApi } from './users';
+import { userTypeDefs, usersResolvers, UsersApi, jwtToken } from './users';
 import { artistsResolvers, ArtistsAPI, artistTypeDefs } from './artists';
 import { genreTypeDefs, genresResolvers, GenresApi } from './genres';
 import { bandsTypeDefs, bandsResolvers, BandsAPI } from './bands';
@@ -39,7 +39,7 @@ const main = async () => {
 		context: ({ req }) => {
 			const token =
 				req.headers.authorization ||
-				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmJiNTcyYzI0NjhhZTQ3Y2EyNDhmZDMiLCJmaXJzdE5hbWUiOiJmaXJzdCBuYW1lIiwibGFzdE5hbWUiOiJsYXN0IG5hbWUiLCJlbWFpbCI6Im1ldDkxMjlAZ21haWwuY29tIiwiaWF0IjoxNjU2NDQ1NjE0fQ.sx2hxE5vCZDO1MTjJ7E7B5hYmJxko2jmvrM2vp3uh4c';
+				jwtToken;
 			return { token };
 		},
 	});

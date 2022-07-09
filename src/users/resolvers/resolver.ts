@@ -1,3 +1,4 @@
+export let jwtToken = '';
 const usersResolvers = {
 	Query: {
 		user: async (_: any, { userId }: any, { dataSources }: any) => {
@@ -12,6 +13,7 @@ const usersResolvers = {
 		jwt: async (_: any, { email, password }: any, { dataSources }: any) => {
 			const data = await dataSources.usersAPI.login(email, password);
 			const { jwt } = data;
+			jwtToken = jwt;
 			return data;
 		},
 		register: async (

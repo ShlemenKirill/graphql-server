@@ -60,7 +60,11 @@ const artistsResolvers = {
 				instruments: instruments,
 			};
 			const data = await dataSources.artistsAPI.createArtist(body, dataSources.artistsAPI);
-			return data;
+            const { _id, ...rest } = data;
+            return {
+                id: _id,
+                ...rest,
+            };
 		},
 		updateArtist: async (
 			_: any,
@@ -92,7 +96,11 @@ const artistsResolvers = {
 				body,
 				dataSources.artistsAPI,
 			);
-			return data;
+            const { _id, ...rest } = data;
+            return {
+                id: _id,
+                ...rest,
+            };
 		},
 		deleteArtist: async (_: any, { artistId }: any, { dataSources }: any) => {
 			return await dataSources.artistsAPI.deleteArtist(artistId, dataSources.artistsAPI);
